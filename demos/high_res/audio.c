@@ -3,13 +3,6 @@
  *
  * Compile:
  * $ cc -o play sound_playback.c -lasound
- * 
- * Usage:
- * $ ./play <sample_rate> <channels> <seconds> < <file>
- * 
- * Examples:
- * $ ./play 44100 2 5 < /dev/urandom
- * $ ./play 22050 1 8 < /path/to/file.wav
  *
  * Copyright (C) 2009 Alessandro Ghedini <alessandro@ghedini.me>
  * --------------------------------------------------------------
@@ -123,6 +116,7 @@ void *audio_play() {
                             pcm = snd_pcm_pause(pcm_handle, 1);
                         }
                         pthread_mutex_unlock(&playing_now_lock);
+                        usleep(250000);
                     }
 
                     if (pcm = read(fd, buff, buff_size) == 0) {
